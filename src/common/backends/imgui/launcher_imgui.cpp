@@ -2600,8 +2600,21 @@ void draw_display_controls(LauncherModel* m, const LauncherTheme& th) {
                 "CPU VRAM authority stays at 1x for snaps/digests.");
         }
     }
+}
 
-    // Universal fullscreen row (every console — no longer gated on the
+// Aspect ratio
+row_label("Aspect ratio", th);
+ImGui::PushID("aspect_ratio");
+
+if (ImGui::Button(
+        launcher_model_aspect_label(m),
+        ImVec2(px(120), px(30)))) {
+    launcher_model_cycle_aspect(m);
+}
+
+ImGui::PopID();
+
+     // Universal fullscreen row
     // vestigial has_fullscreen_toggle). Tri-state cycle replaces the old
     // binary checkbox so Exclusive mode is reachable again.
     row_label("Fullscreen", th);
